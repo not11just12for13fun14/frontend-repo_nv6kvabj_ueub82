@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Percent, MapPin, Users, Receipt } from 'lucide-react'
+import GlassCard from './GlassCard'
 
 const Feature = ({ icon: Icon, title, desc, delay = 0 }) => (
   <motion.div
@@ -8,13 +9,14 @@ const Feature = ({ icon: Icon, title, desc, delay = 0 }) => (
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay }}
     viewport={{ once: true }}
-    className="rounded-2xl border border-white/20 bg-white/60 dark:bg-white/5 backdrop-blur-xl p-5"
   >
-    <div className="flex items-center gap-2 text-gray-900 dark:text-white">
-      <Icon className="h-5 w-5 text-amber-600" />
-      <h3 className="font-semibold">{title}</h3>
-    </div>
-    <p className="text-sm mt-2 text-gray-700/90 dark:text-gray-300/80">{desc}</p>
+    <GlassCard className="group hover:shadow-[0_20px_60px_-20px_rgba(251,191,36,0.35)] transition-shadow">
+      <div className="flex items-center gap-2 text-gray-900 dark:text-white">
+        <Icon className="h-5 w-5 text-amber-600 transition-transform group-hover:scale-110" />
+        <h3 className="font-semibold">{title}</h3>
+      </div>
+      <p className="text-sm mt-2 text-gray-700/90 dark:text-gray-300/80">{desc}</p>
+    </GlassCard>
   </motion.div>
 )
 

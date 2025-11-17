@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import GlassCard from './GlassCard'
 
 const Step = ({ step, title, text, delay = 0 }) => (
   <motion.div
@@ -7,11 +8,12 @@ const Step = ({ step, title, text, delay = 0 }) => (
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay }}
     viewport={{ once: true }}
-    className="rounded-2xl border border-white/20 bg-white/60 dark:bg-white/5 backdrop-blur-xl p-5"
   >
-    <div className="text-sm font-semibold text-gray-900/80 dark:text-white/80">Step {step}</div>
-    <h3 className="mt-1 font-semibold text-gray-900 dark:text-white">{title}</h3>
-    <p className="text-sm mt-2 text-gray-700/90 dark:text-gray-300/80">{text}</p>
+    <GlassCard className="group">
+      <div className="text-sm font-semibold text-gray-900/80 dark:text-white/80">Step {step}</div>
+      <h3 className="mt-1 font-semibold text-gray-900 dark:text-white">{title}</h3>
+      <p className="text-sm mt-2 text-gray-700/90 dark:text-gray-300/80">{text}</p>
+    </GlassCard>
   </motion.div>
 )
 
