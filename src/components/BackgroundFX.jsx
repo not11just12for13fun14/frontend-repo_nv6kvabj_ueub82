@@ -18,10 +18,8 @@ const BackgroundFX = () => {
       }} />
 
       {/* Glow blobs */}
-      <motion.div style={{ y: y1 }} className="absolute -top-24 -left-24 h-[46rem] w-[46rem] rounded-full blur-3xl"
-        style={{ y: y1, background: 'radial-gradient(closest-side, oklch(0.92_0.14_85) 0%, transparent 70%)' }} />
-      <motion.div style={{ y: y2 }} className="absolute -bottom-24 -right-20 h-[40rem] w-[40rem] rounded-full blur-3xl"
-        style={{ y: y2, background: 'radial-gradient(closest-side, oklch(0.86_0.17_75) 0%, transparent 70%)' }} />
+      <motion.div className="absolute -top-24 -left-24 h-[46rem] w-[46rem] rounded-full blur-3xl" style={{ y: y1, background: 'radial-gradient(closest-side, oklch(0.92_0.14_85) 0%, transparent 70%)' }} />
+      <motion.div className="absolute -bottom-24 -right-20 h-[40rem] w-[40rem] rounded-full blur-3xl" style={{ y: y2, background: 'radial-gradient(closest-side, oklch(0.86_0.17_75) 0%, transparent 70%)' }} />
 
       {/* Noise overlay */}
       <div className="absolute inset-0 opacity-[.07] mix-blend-soft-light" style={{

@@ -10,6 +10,8 @@ import Footer from './components/Footer'
 import BackgroundFX from './components/BackgroundFX'
 import Marquee from './components/Marquee'
 import CursorGlow from './components/CursorGlow'
+import ScrollStage from './components/ScrollStage'
+import SectionDivider from './components/SectionDivider'
 
 function App() {
   return (
@@ -20,9 +22,18 @@ function App() {
       <main>
         <Hero />
         <Marquee />
-        <Features />
-        <HowItWorks />
-        <Experiences />
+        <SectionDivider />
+        <ScrollStage>
+          <Features />
+        </ScrollStage>
+        <SectionDivider />
+        <ScrollStage>
+          <HowItWorks />
+        </ScrollStage>
+        <SectionDivider />
+        <ScrollStage>
+          <Experiences />
+        </ScrollStage>
         <CTA />
         <FAQ />
       </main>

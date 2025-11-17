@@ -2,6 +2,8 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Sparkles, ArrowRight, ShieldCheck, Crown } from 'lucide-react'
 import Magnetic from './Magnetic'
+import Tilt from './Tilt'
+import Spline from '@splinetool/react-spline'
 
 const gradientText = 'bg-clip-text text-transparent bg-[conic-gradient(from_220deg_at_50%_50%,oklch(0.9_0.14_85)_0%,oklch(0.98_0.04_95)_30%,oklch(0.86_0.17_75)_60%,oklch(0.92_0.07_95)_100%)]'
 
@@ -11,6 +13,13 @@ const Hero = () => {
       {/* Layered glows */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_-10%,rgba(253,230,138,0.28),transparent_60%)]" />
+      </div>
+
+      {/* 3D Spline backdrop */}
+      <div className="absolute inset-x-0 top-10 -z-10 h-[420px] md:h-[520px] opacity-70">
+        <div className="absolute inset-0 [mask-image:radial-gradient(60%_60%_at_50%_35%,black,transparent)]">
+          <Spline scene="https://prod.spline.design/6nJx2X3mK8OQwH2Y/scene.splinecode" />
+        </div>
       </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -64,29 +73,45 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        {/* Glass panel preview + parallax accent */}
+        {/* Glass panel preview with 3D tilt & texture */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.15 }}
           viewport={{ once: true }}
-          className="mt-14 rounded-3xl border border-white/20 bg-white/40 dark:bg-white/5 backdrop-blur-2xl p-4 shadow-[0_10px_60px_-15px_rgba(251,191,36,0.35)]"
+          className="mt-14"
         >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {[
-              { title: 'Chef’s Tasting', price: '$85 pp', tag: 'Group of 4–6' },
-              { title: 'Date Night Prix Fixe', price: '$120 for 2', tag: 'All-in, tip included' },
-              { title: 'Budget Bites', price: '$15 pp', tag: 'Under $20 total' },
-            ].map((card, idx) => (
-              <motion.div key={card.title} initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 * (idx + 1) }} className="rounded-2xl border border-white/20 bg-white/60 dark:bg-white/10 backdrop-blur-xl p-5">
-                <div className="flex items-center justify-between">
-                  <h3 className="font-semibold text-gray-900 dark:text-white">{card.title}</h3>
-                  <span className="text-sm text-gray-700 dark:text-gray-200/80">{card.price}</span>
-                </div>
-                <p className="text-xs mt-1 text-gray-600 dark:text-gray-300/80">{card.tag}</p>
-              </motion.div>
-            ))}
-          </div>
+          <Tilt scale={1.01} max={10}>
+            <div className="relative rounded-3xl border border-white/20 bg-white/40 dark:bg-white/5 backdrop-blur-2xl p-4 shadow-[0_10px_60px_-15px_rgba(251,191,36,0.35)] overflow-hidden">
+              <div aria-hidden className="pointer-events-none absolute inset-0 rounded-[inherit]" style={{
+                background:
+                  'linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.08) 35%, rgba(255,255,255,0) 60%)'
+              }} />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 relative">
+                {[
+                  { title: 'Chef’s Tasting', price: '$85 pp', tag: 'Group of 4–6' },
+                  { title: 'Date Night Prix Fixe', price: '$120 for 2', tag: 'All-in, tip included' },
+                  { title: 'Budget Bites', price: '$15 pp', tag: 'Under $20 total' },
+                ].map((card, idx) => (
+                  <div key={card.title} className="relative">
+                    <div className="absolute inset-0 rounded-2xl bg-[radial-gradient(120%_80%_at_0%_0%,rgba(251,191,36,0.12),transparent_40%)]" />
+                    <div className="rounded-2xl border border-white/20 bg-white/60 dark:bg-white/10 backdrop-blur-xl p-5 relative">
+                      <div className="flex items-center justify-between">
+                        <h3 className="font-semibold text-gray-900 dark:text-white">{card.title}</h3>
+                        <span className="text-sm text-gray-700 dark:text-gray-200/80">{card.price}</span>
+                      </div>
+                      <p className="text-xs mt-1 text-gray-600 dark:text-gray-300/80">{card.tag}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {/* film grain */}
+              <div className="pointer-events-none absolute inset-0 opacity-[.06] mix-blend-soft-light" style={{
+                backgroundImage:
+                  'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'160\' height=\'160\' viewBox=\'0 0 160 160\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'160\' height=\'160\' filter=\'url(%23n)\' opacity=\'0.3\'/%3E%3C/svg%3E")'
+              }} />
+            </div>
+          </Tilt>
         </motion.div>
       </div>
     </section>
